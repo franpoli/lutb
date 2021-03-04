@@ -1,0 +1,47 @@
+@page
+@model AssetManagement.Pages.Companies.IndexModel
+
+@{
+    ViewData["Title"] = "Companies";
+}
+
+<h1>Index</h1>
+<h4>Companies</h4>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <a asp-page="./Index" asp-route-sortOrder="@Model.CompanySort">
+                    @Html.DisplayNameFor(model => model.Companies[0].CompanyName)
+                </a>
+            </th>
+            <th>
+                <a asp-page="./Index" asp-route-sortOrder="@Model.CountrySort">
+                    @Html.DisplayNameFor(model => model.Companies[0].Country.CountryName)
+                </a>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Companies) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompanyName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Country.CountryName)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.CompanyId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.CompanyId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.CompanyId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

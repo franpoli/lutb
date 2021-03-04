@@ -1,0 +1,49 @@
+@page
+@model AssetManagement.Pages.Purchases.IndexModel
+
+@{
+    ViewData["Title"] = "Purchases";
+}
+
+<h1>Index</h1>
+<h4>Purchases</h4>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Purchase[0].PurchaseDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Purchase[0].Product)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Purchase[0].Company)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Purchase) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PurchaseDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.ProductFullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Company.CompanyName)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.PurchaseId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.PurchaseId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.PurchaseId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

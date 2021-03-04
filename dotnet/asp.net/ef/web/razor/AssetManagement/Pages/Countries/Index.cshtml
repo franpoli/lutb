@@ -1,0 +1,48 @@
+@page
+@model AssetManagement.Pages.Countries.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Country[0].CountryName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Country[0].CountryCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Country[0].CurrencyCode)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Country) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CountryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CountryCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CurrencyCode)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.CountryId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.CountryId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.CountryId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
